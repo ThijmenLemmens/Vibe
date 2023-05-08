@@ -1,10 +1,11 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import {Navbar} from "@/components/navbar/navbar";
+
 
 const Home = () => {
   return (
     <main>
-
+        <Navbar />
+        <h1>Home</h1>
     </main>
   )
 }
