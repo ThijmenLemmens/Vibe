@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/navbar/navbar";
 
 import TextToSpeech from "@/util/TextToSpeech"; 
-import dynamic from "next/dynamic";
 
 const Home = () => {
 
