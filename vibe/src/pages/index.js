@@ -1,13 +1,14 @@
-import {Navbar} from "@/components/navbar/navbar";
+import { Navbar } from "@/components/navbar/navbar";
 
 
 const Home = () => {
-  return (
-    <main>
-        <Navbar />
-        <h1>Home</h1>
-    </main>
-  )
+
+    return (
+        <main>
+            <Navbar />
+            <h1>Home</h1>
+        </main>
+    )
 }
 
 export default Home;
