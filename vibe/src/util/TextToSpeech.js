@@ -20,10 +20,10 @@ export default class TextToSpeech {
         }  
     }
   
-    addEvent(string) {
+    addEvent(id) {
         if (Setting.sound) {
             if (typeof window !== 'undefined') {
-                this.element = document.getElementById(string);
+                this.element = document.getElementById(id);
     
                 this.element.addEventListener('mouseenter', (e) => {
                     e.preventDefault();
