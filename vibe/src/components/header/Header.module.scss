@@ -2,11 +2,33 @@
     display: flex;
     width: 100%;
     height: 75px;
-    background-color: aquamarine;
+    // background-color: aquamarine;
 }
 
 .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
-    width: 15%;
-    background-color: black;
+    width: 20%;
+}
+
+.nav {
+    display: flex;
+    height: 100%;
+    width: 80%;
+}
+
+.searchbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 75%;
+}
+
+.account {
+    height: 100%;
+    width: 25%;
+    background-color: blue;
 }
