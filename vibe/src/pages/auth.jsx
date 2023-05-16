@@ -16,7 +16,7 @@ const Auth = () => {
                 <div className={styles.container}>
                     <div className={styles.logocontainer}> <Logo fontSize={60} fontSizeSmall={46} /> </div>
                     <div className="">
-                        <TextboxWithTitle title={"Display Name"} width={250} />
+                        <TextboxWithTitle title={"Display Name"} length={250} />
                     </div>
                 </div>
             </main>
