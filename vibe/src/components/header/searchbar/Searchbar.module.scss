@@ -1,0 +1,28 @@
+.search {
+    width: 80%;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
+
+.searchbar {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 40px;
+    border: 2px solid #7622b5;
+    border-radius: 30px;
+}
+
+.iconcontainer {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+}
+
+.icon {
+    width: 26px;
+    height: 26px;
+}

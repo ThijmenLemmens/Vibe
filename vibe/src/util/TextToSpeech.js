@@ -6,7 +6,7 @@ export default class TextToSpeech {
     speech;
     synth;
 
-    constructor(text) {
+    constructor(text, id) {
         if (Setting.sound) {
             if (typeof window !== 'undefined' && 'SpeechSynthesisUtterance' in window) {
                 this.synth = window.speechSynthesis;
@@ -16,25 +16,25 @@ export default class TextToSpeech {
                     alert("Sorry, your browser doesn't support text to speech!");
                     return;
                 }
+
+                this.addEvent(id);
             }
         }  
     }
   
     addEvent(id) {
-        if (Setting.sound) {
-            if (typeof window !== 'undefined') {
-                this.element = document.getElementById(id);
+        if (typeof window !== 'undefined') {
+            this.element = document.getElementById(id);
+
+            this.element.addEventListener('mouseenter', (e) => {
+                e.preventDefault();
+                this.play();
+            });
     
-                this.element.addEventListener('mouseenter', (e) => {
-                    e.preventDefault();
-                    this.play();
-                });
-        
-                this.element.addEventListener('mouseleave', (e) => {
-                    e.preventDefault();
-                    this.stop();
-                });
-            }
+            this.element.addEventListener('mouseleave', (e) => {
+                e.preventDefault();
+                this.stop();
+            });
         }
     }
   
