@@ -1,0 +1,36 @@
+{
+  "bericht": {
+    "uuid": "1234567890",
+    "text": "Hallo Welt!",
+    "medialink": "http://www.example.com/image.jpg",
+    "created": "2014-01-01 12:00:00",
+    "likes": 123,
+    "comment": 123,
+    "comments": {
+      "UUID": {
+        "likes": 300,
+        "text": "Hallo Welt!",
+        "comments": {
+          UUID
+        }
+      }
+    }
+  },
+  "pages/components": {
+    "header": {
+      "search": "pik",
+      "logo": "awfawf",
+      "logged in": {
+        "username": "pik",
+        "avatar": "http://www.example.com/avatar.jpg"
+      },
+      "niet logged in": {
+            "login": "http://www.example.com/login",
+            "register": "http://www.example.com/register"
+        }
+    },
+    "main page": {
+
+    }
+  }
+}
