@@ -9,8 +9,6 @@ const anton = Anton({
 
 const Logo = ( {fontSize, fontSizeSmall} ) => {
 
-    console.log(fontSize);
-
     const logo = {
         fontSize: `${fontSize}px`,
         letterSpacing: "-1px",

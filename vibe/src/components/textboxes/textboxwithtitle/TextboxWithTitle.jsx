@@ -14,7 +14,6 @@ const TextboxWithTitle = ( {title, length} ) => {
         width: `${length}px`
     }
 
-
     return (
         <div className={styles.container}>
             <div style={group}>

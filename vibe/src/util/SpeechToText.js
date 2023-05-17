@@ -37,8 +37,6 @@ export default class SpeechToText {
             this.textOutput += transcript;
 
             this.#textveld.value = transcript;
-
-            console.log(this.textOutput);
         }
 
         this.#startElement.addEventListener("click", (e) => {
