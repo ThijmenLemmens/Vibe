@@ -1,0 +1,86 @@
+.field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #7622b5;
+    outline: 0;
+    font-size: 1.3rem;
+    color: black;
+    padding: 6px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+
+    &::placeholder {
+        color: transparent;
+    }
+
+    &:placeholder-shown ~ .label {
+        font-size: 1.3rem;
+        cursor: text;
+        top: 20px;
+    }
+}
+
+.label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #9b9b9b;
+}
+
+.field:focus {
+    ~ .label {
+        position: absolute;
+        top: 0;
+        display: block;
+        transition: 0.2s;
+        font-size: 1rem;
+        color: #7622b5;
+        font-weight: 700;
+    }
+    padding-bottom: 6px;
+    // font-weight: 700;
+    border-width: 2px;
+    border-image: linear-gradient(to right, #7622b5, #7622b5);
+    border-image-slice: 1;
+}
+/* reset input */
+.field {
+    &:required,
+    &:invalid {
+        box-shadow: none;
+    }
+}
+
+.container {
+    display: flex;
+}
+
+.miccontainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 30px;
+    height: 60px;
+    border-bottom: solid 2px #7622b5;
+}
+
+.microphone {
+    height: 30px;
+    width: 30px;
+    margin-bottom: 3px;
+}
+
+/* demo */
+// body {
+//     font-family: 'Poppins', sans-serif;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     min-height: 100vh;
+//     font-size: 1.5rem;
+//     background-color: #222222;
+// }

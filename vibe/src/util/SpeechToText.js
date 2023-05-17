@@ -7,7 +7,9 @@ export default class SpeechToText {
     #recognition;
     #startElement;
 
-    constructor(id) {
+    #textveld
+
+    constructor(id, textveld) {
 
         if (this.#checkAvailability()) {
             this.#startElement = document.getElementById(id);
@@ -18,6 +20,8 @@ export default class SpeechToText {
             this.#recognition.interimResults = true;
 
             this.#recognition.lang = Setting.language;
+
+            this.#textveld = document.getElementById(textveld);
 
             this.#addEvent();
         } 
@@ -32,7 +36,7 @@ export default class SpeechToText {
 
             this.textOutput += transcript;
 
-            console.log(this.textOutput);
+            this.#textveld.value = transcript;
         }
 
         this.#startElement.addEventListener("click", (e) => {
