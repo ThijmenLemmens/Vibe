@@ -25,10 +25,11 @@ const SpeechToText = (id) => {
             textOutput += transcript;
 
             textveld.value = transcript;
-
         }
     }
 }
+
+
 
 const checkAvailability = () => {
     if (typeof window !== "undefined" && ("SpeechRecongition" in window || "webkitSpeechRecognition" in window)) {

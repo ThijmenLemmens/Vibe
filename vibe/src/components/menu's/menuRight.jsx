@@ -7,7 +7,7 @@ export const MenuRight = (props) => {
     }, []);
 
     return (
-        <div className="bg-cyan-100 h-max">
+        <div className="bg-cyan-100 h-full overflow-y-auto">
             a
         </div>
     );
