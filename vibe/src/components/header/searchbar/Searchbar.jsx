@@ -7,7 +7,10 @@ import SpeechToText from "@/util/SpeechToText";
 
 const Searchbar = () => {
 
-    const stt = new SpeechToText("mic", "search");
+    const handleOnCick = () => {
+        console.log("click");
+        SpeechToText("search");
+    }
 
     return (
         <div className={styles.searchbar}>
@@ -27,6 +30,7 @@ const Searchbar = () => {
                     src={mic}
                     width={24}
                     height={24}
+                    onClick={handleOnCick}
                     alt=""
                 />
             </div>

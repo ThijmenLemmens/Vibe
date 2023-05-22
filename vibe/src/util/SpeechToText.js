@@ -1,58 +1,41 @@
 import Setting from "./Setting";
 
-export default class SpeechToText {
+const SpeechToText = (id) => {
+    if (checkAvailability()) {
+        const textveld = document.getElementById(id);
 
-    textOutput;
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    #recognition;
-    #startElement;
+        const recognition = new SpeechRecognition();
 
-    #textveld
+        recognition.interimResults = true;
 
-    constructor(id, textveld) {
+        recognition.lang = Setting.language;
 
-        if (this.#checkAvailability()) {
-            this.#startElement = document.getElementById(id);
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let textOutput = "";
 
-            this.#recognition = new SpeechRecognition();
-            
-            this.#recognition.interimResults = true;
+        recognition.start();
 
-            this.#recognition.lang = Setting.language;
+        recognition.onresult = (event) => {
 
-            this.#textveld = document.getElementById(textveld);
-
-            this.#addEvent();
-        } 
-    }
-
-    #addEvent() {
-
-        this.#recognition.onresult = (event) => {
             let current = event.resultIndex;
             
             let transcript = event.results[current][0].transcript;
 
-            this.textOutput += transcript;
+            textOutput += transcript;
 
-            this.#textveld.value = transcript;
+            textveld.value = transcript;
+
         }
-
-        this.#startElement.addEventListener("click", (e) => {
-            e.preventDefault();
-            this.textOutput = "";
-            this.#recognition.start();
-        });
-
     }
-
-    #checkAvailability() {
-        if (typeof window !== "undefined" && ("SpeechRecongition" in window || "webkitSpeechRecognition" in window)) {
-            return true;
-        }
-
-        return false;
-    }
-
 }
+
+const checkAvailability = () => {
+    if (typeof window !== "undefined" && ("SpeechRecongition" in window || "webkitSpeechRecognition" in window)) {
+        return true;
+    }
+
+    return false;
+}
+
+export default SpeechToText;
