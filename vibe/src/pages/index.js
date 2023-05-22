@@ -6,7 +6,7 @@ import Header from "@/components/header/Header";
 const Home = () => {
 
     return (
-        <main>
+        <main className="bg-gray-200">
             <Header />
             <div className="flex mainContainer mt-4">
                 <MenuLeft/>

@@ -1,4 +1,6 @@
 import {useEffect} from "react";
+import {NewPost} from "@/components/feed/newPost";
+import {Post} from "@/components/feed/post";
 
 export const Feed = (props) => {
 
@@ -7,8 +9,9 @@ export const Feed = (props) => {
     }, []);
 
     return (
-        <div className="bg-cyan-100 h-max">
-            a
+        <div className="feed h-full overflow-y-auto flex-col flex gap-y-3">
+            <NewPost />
+            <Post />
         </div>
     );
 }

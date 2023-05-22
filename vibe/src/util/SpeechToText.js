@@ -39,11 +39,11 @@ export default class SpeechToText {
             this.#textveld.value = transcript;
         }
 
-        this.#startElement.addEventListener("click", (e) => {
-            e.preventDefault();
-            this.textOutput = "";
-            this.#recognition.start();
-        });
+        // this.#startElement.addEventListener("click", (e) => {
+        //     e.preventDefault();
+        //     this.textOutput = "";
+        //     this.#recognition.start();
+        // });
 
     }
 
