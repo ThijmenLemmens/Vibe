@@ -15,8 +15,14 @@ const Auth = () => {
             <main className={styles.main}>
                 <div className={styles.container}>
                     <div className={styles.logocontainer}> <Logo fontSize={60} fontSizeSmall={46} /> </div>
-                    <div className="">
-                        <TextboxWithTitle title={"Display Name"} length={250} />
+                    <div className={styles.inputcontainer}>
+                        <TextboxWithTitle input={"text"} title={"Display Name"} length={250} />
+                    </div>
+                    <div className={styles.inputcontainer}>
+                        <TextboxWithTitle input={"text"} title={"Password"} length={250} />
+                    </div>
+                    <div className={styles.inputcontainer}>
+                        <TextboxWithTitle input={"Text"} title={"Email"} length={250} />
                     </div>
                 </div>
             </main>
