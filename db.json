@@ -1,0 +1,33 @@
+{
+  "accounts": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "",
+      "img": "",
+      "password": "",
+      "createDate": "2019-01-01",
+      "upvotedPosts": [1,2,3],
+      "downvotedPosts": [1,2,3]
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Hello World",
+      "content": "This is my first post",
+      "accountID": 1,
+      "createDate": "2019-01-01",
+      "medialink": "",
+      "comments": [
+          {
+              "id": 1,
+              "accountID": 1,
+              "content": "This is my first comment",
+              "date": "2019-01-01",
+
+          }
+        ]
+    }
+  ]
+}
