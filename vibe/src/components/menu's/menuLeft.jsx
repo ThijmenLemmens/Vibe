@@ -7,7 +7,7 @@ export const MenuLeft = (props) => {
     }, []);
 
     return (
-        <div className="bg-cyan-100 h-full overflow-y-auto">
+        <div className="bg-cyan-100 sticky z-0 align-top top-0 pt-2 overflow-y-auto h-min">
             a
         </div>
     );

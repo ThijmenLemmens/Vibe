@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <main className="bg-gray-200">
             <Header />
-            <div className="flex mainContainer mt-4">
+            <div className="mainContainer mt-4 relative">
                 <MenuLeft/>
                 <Feed/>
                 <MenuRight/>
