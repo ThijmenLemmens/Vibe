@@ -9,7 +9,7 @@ export const Feed = (props) => {
     }, []);
 
     return (
-        <div className="feed h-full overflow-y-auto flex-col flex gap-y-3">
+        <div className="feed h-full flex-col flex gap-y-3">
             <NewPost />
             <Post />
         </div>

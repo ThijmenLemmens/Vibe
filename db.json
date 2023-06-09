@@ -17,15 +17,36 @@
       "title": "Hello World",
       "content": "This is my first post",
       "accountID": 1,
-      "createDate": "2019-01-01",
+      "createDate": "2019-01-01:23:45",
       "medialink": "",
+      "upvotes": [
+          1,2,3
+      ],
+      "downvotes": [
+          1,2,3
+      ],
       "comments": [
           {
               "id": 1,
               "accountID": 1,
               "content": "This is my first comment",
-              "date": "2019-01-01",
-
+              "date": "2019-01-01:23:45",
+              "upvotes": [
+                    1,2,3
+              ],
+              "downvotes": [
+                    1,2,3
+              ],
+              "replies": [
+                    {
+                        "id": 1,
+                        "accountID": 1,
+                        "content": "This is my first reply",
+                        "date": "2019-01-01:23:45",
+                        "upvotes": 0,
+                        "downvotes": 0
+                    }
+                ]
           }
         ]
     }
