@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Head from "next/head";
 import Header from "@/components/header/Header";
 
@@ -9,6 +9,24 @@ const NewPost = (props) => {
     }, []);
 
     const [fileName, setFileName] = useState("");
+    const [isHovered, setIsHovered] = useState(false);
+    const [isHovered2, setIsHovered2] = useState(false);
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
+
+    const handleMouseEnter2 = () => {
+        setIsHovered2(true);
+    };
+
+    const handleMouseLeave2 = () => {
+        setIsHovered2(false);
+    };
 
     const handleFileUpload = (event) => {
         const fileInput = event.target;
@@ -26,12 +44,63 @@ const NewPost = (props) => {
             <Header />
             <div className="container mx-auto flex items-center justify-center">
                 <form action="" className="w-full mx-40 mt-10 shadow-xl bg-gray-50 rounded-md grid grid-cols-1">
-                    <input type="text" name="" id="" placeholder="Title...." className="border-1 ring-1 ring-gray-200 mx-5 my-5 rounded p-2 focus:ring-gray-400 focus:outline-0" required/>
+                    <label className="relative">
+                        <input type="text" name="" id="" placeholder="Title...." className="border-1 fill-avalible ring-1 ring-gray-200 m-5 rounded p-2 focus:ring-gray-400 focus:outline-0" required/>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            fill="currentColor"
+                            className={`bi ${isHovered ? 'bi-mic-fill' : 'bi-mic'} top-0 right-0 absolute m-7 cursor-pointer`}
+                            viewBox="0 0 16 16"
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            {isHovered ? (
+                                <React.Fragment>
+                                    <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z" />
+                                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z" />
+                                </React.Fragment>
+                            ) : (
+                                <React.Fragment>
+                                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z" />
+                                    <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z" />
+                                </React.Fragment>
+                            )}
+                        </svg>
+                    </label>
                     <div className="mx-5 mb-4 border border-gray-200 rounded-lg bg-gray-50">
-                        <label htmlFor="comment" className="sr-only">Your comment</label>
-                        <textarea id="comment" rows="5"
-                                  className="w-full rounded-md ring-1 ring-gray-200 text-sm text-gray-900 bg-white border-0 p-2 focus:ring-gray-400 focus:outline-0"
-                                  placeholder="Write a comment..."></textarea>
+                        <label className="relative">
+                              <textarea
+                                  id="comment"
+                                  rows="5"
+                                  className="w-full rounded-md ring-1 ring-gray-200 text-sm text-gray-900 bg-white border-0 p-2 pr-10 focus:ring-gray-400 focus:outline-0"
+                                  placeholder="Write a comment..."
+                              ></textarea>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                fill="currentColor"
+                                className={`bi ${isHovered2 ? 'bi-mic-fill' : 'bi-mic'} bottom-20 right-2 absolute text-gray-400 cursor-pointer`}
+                                viewBox="0 0 16 16"
+                                onMouseEnter={handleMouseEnter2}
+                                onMouseLeave={handleMouseLeave2}
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z"
+                                />
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"
+                                />
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"
+                                />
+                            </svg>
+                        </label>
                         <div className="flex items-center justify-between px-3 py-2">
                             <button type="submit"
                                     className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800">
