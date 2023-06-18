@@ -3,13 +3,23 @@ import img from "@/assets/images/tempImage.png";
 import Image from "next/image";
 import {Comment} from "@/components/feed/comment";
 import {NewComment} from "@/components/feed/newComment";
+import {getDownloadURL, ref} from "firebase/storage";
+import {storage} from "@/config/firebase";
 export const Post = (props) => {
 
     let [hoverArrowUp, setHoverArrowUp] = useState(false)
     let [hoverArrowDown, setHoverArrowDown] = useState(false)
+    let [image, setImage] = useState("");
+
+    const fetchImage = async () => {
+        const storageRef = ref(storage, 'postImages/Screenshot 2023-06-11 215727.png');
+        const url = await getDownloadURL(storageRef);
+        setImage(url);
+        console.log(url)
+    }
 
     useEffect(() => {
-
+        fetchImage();
     }, []);
 
     return (
@@ -56,7 +66,7 @@ export const Post = (props) => {
                     </div>
                     <h3 className="text-3xl flex flex-wrap mb-2">Title</h3>
                     <Image
-                        src={img}
+                        src={image}
                         width="0"
                         height="0"
                         sizes="100vw"
