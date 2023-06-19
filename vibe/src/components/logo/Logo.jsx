@@ -9,6 +9,11 @@ const anton = Anton({
 
 const Logo = ( {fontSize, fontSizeSmall} ) => {
 
+    //navigate to home page
+    const handleClick = () => {
+        window.location.href = "/";
+    }
+
     const logo = {
         fontSize: `${fontSize}px`,
         letterSpacing: "-1px",
@@ -21,7 +26,7 @@ const Logo = ( {fontSize, fontSizeSmall} ) => {
 
     return (
         <>
-            <h4 className={`${anton.className}`} style={logo}>VIBE<span style={smalltext}>4ALL</span></h4>
+            <h4 className={`${anton.className} cursor-pointer`} onClick={handleClick} style={logo}>VIBE<span style={smalltext}>4ALL</span></h4>
         </>
     )
 }
