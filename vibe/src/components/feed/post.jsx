@@ -5,22 +5,58 @@ import {Comment} from "@/components/feed/comment";
 import {NewComment} from "@/components/feed/newComment";
 import {getDownloadURL, ref} from "firebase/storage";
 import {storage} from "@/config/firebase";
-export const Post = (props) => {
+export const Post = ({mediaUUID, title, date, content, uuid, upvotes, downvotes}) => {
 
     let [hoverArrowUp, setHoverArrowUp] = useState(false)
     let [hoverArrowDown, setHoverArrowDown] = useState(false)
     let [image, setImage] = useState("");
+    let [time, setTime] = useState(0);
 
-    const fetchImage = async () => {
-        const storageRef = ref(storage, 'postImages/Screenshot 2023-06-11 215727.png');
-        const url = await getDownloadURL(storageRef);
-        setImage(url);
-        console.log(url)
+    const calulateTimeDifference = () => {
+        const timeDifference = Math.floor((new Date().getTime() - new Date(date).getTime()) / 1000);
+
+        const jaren = Math.floor(timeDifference / (365 * 24 * 60 * 60));
+        let rest = timeDifference % (365 * 24 * 60 * 60);
+        const maanden = Math.floor(rest / (30 * 24 * 60 * 60));
+        rest = rest % (30 * 24 * 60 * 60);
+        const dagen = Math.floor(rest / (24 * 60 * 60));
+        rest = rest % (24 * 60 * 60);
+        const uren = Math.floor(rest / (60 * 60));
+        rest = rest % (60 * 60);
+        const minuten = Math.floor(rest / 60);
+
+        let tijd = '';
+
+        if (jaren > 0) {
+            tijd = `${jaren} year${jaren > 1 ? 's' : ''}`;
+        } else if (maanden > 0) {
+            tijd = `${maanden} month${maanden > 1 ? 's' : ''}`;
+        } else if (dagen > 0) {
+            tijd = `${dagen} day${dagen > 1 ? 's' : ''}`;
+        } else if (uren > 0) {
+            tijd = `${uren} hour${uren > 1 ? 's' : ''}`;
+        } else if (minuten > 0) {
+            tijd = `${minuten} minute${minuten > 1 ? 's' : ''}`;
+        } else {
+            tijd = 'less than a minute';
+        }
+        setTime(tijd);
     }
 
     useEffect(() => {
+        calulateTimeDifference();
+        const fetchImage = async () => {
+            if (mediaUUID) {
+                const storageRef = ref(storage, `postImages/${mediaUUID}`);
+                const res = await getDownloadURL(storageRef);
+                setImage(res);
+            }
+        };
+
+        console.log(date);
+
         fetchImage();
-    }, []);
+    }, [mediaUUID]);
 
     return (
         <div className="w-full bg-white rounded-lg ps-2 py-2">
@@ -62,9 +98,10 @@ export const Post = (props) => {
                     <div className="flex items-center">
                         <Image src={img} alt="" height={40}  className="rounded-full mr-2"/>
                         <p className="font-bold mr-1">Username</p>
-                        <p className="text-xs">1 hour ago</p>
+                        <p className="text-xs">{time} ago</p>
                     </div>
-                    <h3 className="text-3xl flex flex-wrap mb-2">Title</h3>
+                    <h3 className="text-3xl flex flex-wrap mb-2">{title}</h3>
+                    {mediaUUID ?
                     <Image
                         src={image}
                         width="0"
@@ -73,6 +110,7 @@ export const Post = (props) => {
                         className="w-full h-auto"
                         alt="Post Image"
                     />
+                    : null}
                     <div className="flex">
                         <div className="flex cursor-pointer hover:bg-gray-100 py-2 px-1 rounded mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"

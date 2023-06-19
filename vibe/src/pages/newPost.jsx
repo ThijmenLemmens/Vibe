@@ -13,8 +13,16 @@ const NewPost = (props) => {
     }, []);
 
     const [fileName, setFileName] = useState("");
+    const [file, setFile] = useState("");
     const [isHovered, setIsHovered] = useState(false);
     const [isHovered2, setIsHovered2] = useState(false);
+
+    const uuid = () => {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -33,15 +41,13 @@ const NewPost = (props) => {
     };
 
     const handleFileUpload = (event) => {
-        const fileInput = event.target;
-        if (fileInput.files.length > 0) {
-            setFileName(fileInput.files[0].name);
-        } else {
-            setFileName("");
-        }
+            const fileInput = event.target.files[0];
+            setFileName(fileInput.name);
+            setFile(fileInput);
     };
 
     const handleUpload = async (e) => {
+        const uid = uuid();
         e.preventDefault();
         const title = e.target[0].value;
         const content = e.target[1].value;
@@ -56,11 +62,11 @@ const NewPost = (props) => {
             Downvotes: [],
             title: title,
             Upvotes: [],
-            mediaUUID: "87119fcc-7bb8-44fb-b82c-d2c0d8513d31",
+            mediaUUID: uid + fileName
         });
 
-        const storageRef = ref(storage, `postImages/${docRef.id}`);
-        uploadBytes(storageRef, e.target[2].files[0]).then((snapshot) => {
+        const storageRef = ref(storage, `postImages/${uid}${fileName}`);
+        uploadBytes(storageRef, file).then((snapshot) => {
             console.log('Uploaded a blob or file!');
         }
         );
