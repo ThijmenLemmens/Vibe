@@ -8,17 +8,11 @@ export default function Home()  {
     return (
         <>
             <Header></Header>
-            <main className={styles.main}>
-                <div className={styles.menucontainer}>
-                    <div className={styles.test}>
-                        <Menu className={styles.menu} />
-                    </div>
-                </div>
-                <div className={styles.feed}>
-                    <Feed />
-                </div>
-                <div className={styles.news}>
-
+            <main className="bg-gray-200">
+                <div className="mainContainer mt-4 relative">
+                    <MenuLeft/>
+                    <Feed/>
+                    <MenuRight/>
                 </div>
             </main>
         </>
