@@ -1,0 +1,26 @@
+.main {
+    display: flex;
+    justify-content: center;
+    height: 200vh;
+
+    .menucontainer {
+        display: flex;
+        justify-content: center;
+        margin-top: 85px;
+        width: 20%;
+
+        .test {
+            position: sticky;
+        }
+    }
+
+    .feed {
+        width: 40%;
+        background-color: aqua;
+    }
+
+    .news {
+        width: 20%;
+        background-color: blueviolet;
+    }
+}

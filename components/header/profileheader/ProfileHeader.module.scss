@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    cursor: pointer;
+    min-width: 175px;
+    max-width: 250px; 
+
+    .image {
+        margin: 5px;
+    }
+
+    .displayName {
+        font-family: "halcom", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        user-select: none;
+        margin: 8px;
+        font-size: 12px;
+    }
+}

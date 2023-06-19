@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    position: fixed;   
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    border-bottom: 1px solid rgb(209, 209, 209);
+}
+
+.sides {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+}
+
+.middle {
+    width: 50%;
+    height: 100%;
+    background-color: red;
+}
+
+.text {
+    font-family: "brevia", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    color: #22A8F2;
+    font-size: 30px;
+}
