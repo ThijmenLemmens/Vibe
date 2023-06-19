@@ -1,0 +1,97 @@
+.dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 370px;
+    height: 390px;
+    padding: 0;
+    margin: 0;
+    max-width: 650px;
+    border-radius: 10px;
+}
+
+.loginContainer {
+    width: 370px;
+    height: 100%;
+
+    .titleContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 15px 0px;
+
+        .title {
+            color:#22A8F2;
+            font-family: "poppins", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 26px;
+        }
+    }
+
+    .body {
+        width: 370px;
+        padding: 15px;
+        padding-top: 5px;
+
+        .description {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: auto;
+
+            .text {
+                font-family: "poppins", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+        }
+
+        .form {
+            width: 100%;
+
+            .util {
+                display: flex;
+                align-items: center;
+                margin-top: 10px;
+                height: 40px;
+                width: 100%;
+
+                .checkbox {
+                    padding: 0;
+                }
+
+                .text {
+                    margin-left: 5px;
+                    margin-right: 82px;
+                }
+            }
+
+            .loginButton {
+                margin-top: 15px;
+                font-family: "poppins", sans-serif;
+                font-weight: 600;
+                font-style: normal;
+                width: 100%;
+                height: 40px;
+                background-color: #22A8F2;
+                border-radius: 2px;
+                color: white;
+            }
+        }
+    }
+
+    .footer {
+        width: 370px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.a {
+    color: #22A8F2;
+    cursor: pointer;
+}
