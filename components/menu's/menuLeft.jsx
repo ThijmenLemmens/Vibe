@@ -1,6 +1,8 @@
+'use client';
+
 import {useEffect} from "react";
 
-export const MenuLeft = (props) => {
+const MenuLeft = (props) => {
 
     useEffect(() => {
 
@@ -8,7 +10,9 @@ export const MenuLeft = (props) => {
 
     return (
         <div className="bg-cyan-100 sticky z-0 align-top top-0 pt-2 overflow-y-auto h-min">
-            a
+            
         </div>
     );
 }
+
+export default MenuLeft;

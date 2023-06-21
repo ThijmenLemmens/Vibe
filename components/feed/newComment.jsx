@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 
-export const NewComment = (props) => {
+const NewComment = (props) => {
 
     useEffect(() => {
 
@@ -18,3 +18,5 @@ export const NewComment = (props) => {
         </div>
     );
 }
+
+export default NewComment;

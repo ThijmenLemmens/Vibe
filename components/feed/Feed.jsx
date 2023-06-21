@@ -1,11 +1,13 @@
+'use client';
+
 import {useEffect, useState} from "react";
-import {NewPost} from "@/components/feed/newPost";
-import {Post} from "@/components/feed/post";
+import NewPost from "./newPost";
+import Post from "./post";
 import { collection, getDocs } from "firebase/firestore";
 import {db, storage} from '../../config/firebase';
 import {ref, listAll, getDownloadURL} from "firebase/storage";
 
-export const Feed = (props) => {
+const Feed = (props) => {
 
     const [posts, setPosts] = useState([]);
     const [image, setImage] = useState("");
@@ -41,3 +43,5 @@ export const Feed = (props) => {
         </div>
     );
 }
+
+export default Feed;

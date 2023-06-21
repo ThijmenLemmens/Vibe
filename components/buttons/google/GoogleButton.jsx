@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import styles from "./GoogleButton.module.scss"
-import auth from "../../../config/firebase"
+import { auth } from "../../../config/firebase"
 import { signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
 
 import google from "../../../public/assets/icons/google.png"

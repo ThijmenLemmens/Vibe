@@ -1,11 +1,13 @@
+'use client';
+
 import {useEffect, useState} from "react";
 import Image from "next/image";
-import img from "@/assets/images/tempImage.png";
+import img from "../../public/assets/img/tempImage.png";
 import Link from "next/link";
 import {useRouter} from "next/router";
 
-export const NewPost = (props) => {
-    const router = useRouter()
+const NewPost = (props) => {
+    // const router = useRouter()
     useEffect(() => {
 
     }, []);
@@ -17,3 +19,5 @@ export const NewPost = (props) => {
         </div>
     );
 }
+
+export default NewPost;

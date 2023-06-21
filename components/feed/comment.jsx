@@ -1,7 +1,8 @@
 import {useEffect} from "react";
-import img from "@/assets/images/tempImage.png";
+import img from "../../public/assets/img/tempImage.png";
 import Image from "next/image";
-export const Comment = (props) => {
+
+const Comment = (props) => {
 
     useEffect(() => {
 
@@ -24,3 +25,5 @@ export const Comment = (props) => {
         </div>
     );
 }
+
+export default Comment;

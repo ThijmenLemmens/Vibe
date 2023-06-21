@@ -1,15 +1,18 @@
+'use client';
+
 import {useEffect, useState} from "react";
-import img from "@/assets/images/tempImage.png";
+import img from "../../public/assets/img/tempImage.png";
 import Image from "next/image";
-import {Comment} from "@/components/feed/comment";
-import {NewComment} from "@/components/feed/newComment";
+import Comment from "./comment";
+import NewComment from "./newComment";
 import {getDownloadURL, ref} from "firebase/storage";
-import {storage} from "@/config/firebase";
-export const Post = (props) => {
+import {storage} from "../../config/firebase";
+
+const Post = (props) => {
 
     let [hoverArrowUp, setHoverArrowUp] = useState(false)
     let [hoverArrowDown, setHoverArrowDown] = useState(false)
-    let [image, setImage] = useState("");
+    let [image, setImage] = useState("");           
 
     const fetchImage = async () => {
         const storageRef = ref(storage, 'postImages/Screenshot 2023-06-11 215727.png');
@@ -96,12 +99,14 @@ export const Post = (props) => {
                     </div>
                 </div>
             </div>
-            {/*comment section*/}
-            {/*<NewComment/>*/}
-            {/*<div className="w-full flex flex-col gap-2">*/}
-            {/*    <Comment/>*/}
-            {/*    <Comment/>*/}
-            {/*</div>*/}
+            comment section
+            <NewComment/>
+            <div className="w-full flex flex-col gap-2">
+               <Comment/>
+               <Comment/>
+            </div>
         </div>
     );
 }
+
+export default Post;
