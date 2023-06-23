@@ -1,22 +1,29 @@
 import {useEffect, useState} from "react";
 import img from "@/assets/images/tempImage.png";
 import Image from "next/image";
-import {Comment} from "@/components/feed/comment";
-import {NewComment} from "@/components/feed/newComment";
 import {getDownloadURL, ref} from "firebase/storage";
-import {storage, db} from "@/config/firebase";
+import {storage} from "@/config/firebase";
+import {getFirestore, doc, updateDoc} from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
-import { auth } from "@/config/firebase";
+export const Post = ({mediaUUID, title, date, content, uuid, upvotes = [], downvotes = []}) => {
 
-import { getUser } from "firebase/auth"
-import { collection, getDocs } from "firebase/firestore";
+    const auth = getAuth();
+    const user = auth.currentUser;
 
-export const Post = ({mediaUUID, title, date, content, uuid, upvotes, downvotes}) => {
 
     let [hoverArrowUp, setHoverArrowUp] = useState(false)
     let [hoverArrowDown, setHoverArrowDown] = useState(false)
     let [image, setImage] = useState("");
     let [time, setTime] = useState(0);
+    let [Upvotes, setUpvotes] = useState(upvotes);
+    let [Downvotes, setDownvotes] = useState(downvotes);
+    let [votes, setVotes] = useState(0);
+
+    const upvote = async () => {
+        const db = getFirestore();
+        const docRef = doc(db, "posts", uuid);
+    }
 
     const calulateTimeDifference = () => {
         const timeDifference = Math.floor((new Date().getTime() - new Date(date).getTime()) / 1000);
@@ -49,7 +56,8 @@ export const Post = ({mediaUUID, title, date, content, uuid, upvotes, downvotes}
         setTime(tijd);
     }
 
-    useEffect(() => {
+
+    useEffect( () => {
         calulateTimeDifference();
         const fetchImage = async () => {
             if (mediaUUID) {
@@ -58,19 +66,41 @@ export const Post = ({mediaUUID, title, date, content, uuid, upvotes, downvotes}
                 setImage(res);
             }
         };
-
-        console.log(uuid);
-
-        console.log(date);
-
         fetchImage();
+        setVotes(Upvotes.length - Downvotes.length )
+
     }, [mediaUUID]);
+
+
+    const handleUpvote = async () => {
+        if (!Upvotes.includes(uuid.displayName)) {
+            Upvotes.push(uuid.displayName);
+            setVotes(Upvotes.length - Downvotes.length )
+        }
+        if (!Downvotes.includes(uuid.displayName)) {
+            //remove from displayname from downvotes
+            Downvotes = Downvotes.filter((item) => item !== uuid.displayName);
+            setVotes(Upvotes.length - Downvotes.length )
+        }
+    }
+
+    const handleDownvote = async () => {
+        if (!Downvotes.includes(uuid.displayName)) {
+            Downvotes.push(uuid.displayName);
+            setVotes(Upvotes.length - Downvotes.length )
+        }
+        if (!Upvotes.includes(uuid.displayName)) {
+            //remove from displayname from upvotes
+            Upvotes = Upvotes.filter((item) => item !== uuid.displayName);
+            setVotes(Upvotes.length - Downvotes.length )
+        }
+    }
 
     return (
         <div className="w-full bg-white rounded-lg ps-2 py-2">
             <div className="flex">
                 <div className="flex h-full flex-col justify-center items-center">
-                    <div onMouseEnter={() => setHoverArrowUp(true)} onMouseLeave={() => setHoverArrowUp(false)} className="w-fit cursor-pointer">
+                    <div onClick={handleUpvote} onMouseEnter={() => setHoverArrowUp(true)} onMouseLeave={() => setHoverArrowUp(false)} className="w-fit cursor-pointer">
                         {hoverArrowUp ? (
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                  className="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
@@ -85,8 +115,8 @@ export const Post = ({mediaUUID, title, date, content, uuid, upvotes, downvotes}
                             </svg>
                         )}
                     </div>
-                    <p className="content-cente">{upvotes}</p>
-                    <div className="w-fit cursor-pointer" onMouseEnter={()=> setHoverArrowDown(true)} onMouseLeave={()=> setHoverArrowDown(false)}>
+                    <p className="content-cente">{votes}</p>
+                    <div className="w-fit cursor-pointer" onClick={handleDownvote} onMouseEnter={()=> setHoverArrowDown(true)} onMouseLeave={()=> setHoverArrowDown(false)}>
                         {hoverArrowDown ? (
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                  className="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">

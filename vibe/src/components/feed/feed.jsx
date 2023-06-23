@@ -3,6 +3,8 @@ import {NewPost} from "@/components/feed/newPost";
 import {Post} from "@/components/feed/post";
 import { collection, getDocs } from "firebase/firestore";
 import {db, storage} from '@/config/firebase';
+import {getFirestore, doc, updateDoc} from "firebase/firestore";
+
 
 export const Feed = (props) => {
 
@@ -15,7 +17,9 @@ export const Feed = (props) => {
                 const newData = querySnapshot.docs
                     .map((doc) => ({...doc.data()}));
                 setPosts(newData);
-                console.log(posts, newData);
+                console.log(newData);
+
+
             })
     }
     useEffect(() => {
@@ -31,19 +35,18 @@ export const Feed = (props) => {
                     console.log(post.Downvotes);
                     return (
                         <Post
-                            key={index}
-                            title={post.title}
-                            content={post.Content}
-                            date={post.Date}
-                            uuid={post.AccountUUID}
                             mediaUUID={post.mediaUUID}
+                            title={post.title}
+                            date={post.Date}
+                            content={post.Content}
+                            uuid={post.AccountUUID}
                             upvotes={post.Upvotes}
                             downvotes={post.Downvotes}
+                            key={index}
                         />
                     )
                 })
             }
-            <Post />
         </div>
     );
 }
