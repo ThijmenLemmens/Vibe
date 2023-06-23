@@ -5,7 +5,9 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 
 export const NewPost = (props) => {
-    const router = useRouter()
+
+    const router = useRouter();
+    
     useEffect(() => {
 
     }, []);

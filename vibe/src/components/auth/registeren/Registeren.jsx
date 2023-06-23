@@ -3,9 +3,13 @@ import styles from "../Auth.module.scss";
 import { useState } from "react";
 import AuthTextBox from "../../textboxes/authtextbox/AuthTextBox";
 
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+
 import padlock from "../../../assets/icons/padlock.png";
 import personIcon from "../../../assets/icons/user.png";
 import idCard from "../../../assets/icons/id-card.png";
+
+import { auth } from "@/config/firebase";
 
 const Registeren = ({openModal, setOpenModal, setOpenLogin}) => {
 
@@ -16,15 +20,19 @@ const Registeren = ({openModal, setOpenModal, setOpenLogin}) => {
 
     const handleForm = () => {
 
-        if (password === confirmPassword) {
-            firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+        if (password == confirmPassword) {
+            createUserWithEmailAndPassword(auth, email, password).then(({user}) => {
 
-                user.updateProfile({
+                console.log("test registeren");
+
+                console.log(displayName);
+
+                updateProfile(user, {
                     displayName: displayName
                 }).then(function() {
-
+                    console.log("change name");
                 }, function(error) {
-
+                    console.log(error);
                 });
             }, function(error) {
                 let errorCode = error.code;
@@ -35,7 +43,11 @@ const Registeren = ({openModal, setOpenModal, setOpenLogin}) => {
                     console.error(error);
                 }
             });
+        } else {
+            console.log("test");
         }
+
+        handleClose();
     }
 
     const hanldeClickLogin = () => {
@@ -67,7 +79,7 @@ const Registeren = ({openModal, setOpenModal, setOpenLogin}) => {
                         <div className={styles.description}>
                             <p className={styles.text}>Vibe - a better way to connect!</p>
                         </div>
-                        <form className={styles.form}>
+                        <div className={styles.form}>
 
                             <AuthTextBox imageRef={idCard} output={setDisplayName} type={"text"} placeholder={"Display Name"} />
 
@@ -79,7 +91,7 @@ const Registeren = ({openModal, setOpenModal, setOpenLogin}) => {
 
                             <button onClick={handleForm} className={styles.loginButton}>Registeren</button>
 
-                        </form>
+                        </div>
                     </div>
                     <div className={styles.footer}>
                         <p>You Have a account Login Here, <a className={styles.a} onClick={hanldeClickLogin}>Login</a></p>

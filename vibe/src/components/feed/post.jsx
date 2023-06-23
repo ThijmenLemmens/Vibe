@@ -4,7 +4,13 @@ import Image from "next/image";
 import {Comment} from "@/components/feed/comment";
 import {NewComment} from "@/components/feed/newComment";
 import {getDownloadURL, ref} from "firebase/storage";
-import {storage} from "@/config/firebase";
+import {storage, db} from "@/config/firebase";
+
+import { auth } from "@/config/firebase";
+
+import { getUser } from "firebase/auth"
+import { collection, getDocs } from "firebase/firestore";
+
 export const Post = ({mediaUUID, title, date, content, uuid, upvotes, downvotes}) => {
 
     let [hoverArrowUp, setHoverArrowUp] = useState(false)
@@ -53,6 +59,8 @@ export const Post = ({mediaUUID, title, date, content, uuid, upvotes, downvotes}
             }
         };
 
+        console.log(uuid);
+
         console.log(date);
 
         fetchImage();
@@ -77,7 +85,7 @@ export const Post = ({mediaUUID, title, date, content, uuid, upvotes, downvotes}
                             </svg>
                         )}
                     </div>
-                    <p className="content-cente">200</p>
+                    <p className="content-cente">{upvotes}</p>
                     <div className="w-fit cursor-pointer" onMouseEnter={()=> setHoverArrowDown(true)} onMouseLeave={()=> setHoverArrowDown(false)}>
                         {hoverArrowDown ? (
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
@@ -97,7 +105,7 @@ export const Post = ({mediaUUID, title, date, content, uuid, upvotes, downvotes}
                 <div className="flex ps-3 flex-col w-full">
                     <div className="flex items-center">
                         <Image src={img} alt="" height={40}  className="rounded-full mr-2"/>
-                        <p className="font-bold mr-1">Username</p>
+                        <p className="font-bold mr-1">{uuid}</p>
                         <p className="text-xs">{time} ago</p>
                     </div>
                     <h3 className="text-3xl flex flex-wrap mb-2">{title}</h3>

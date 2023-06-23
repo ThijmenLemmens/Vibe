@@ -7,10 +7,6 @@ export default async function signIn(email, password, rememberMe) {
     try {
         result = await signInWithEmailAndPassword(auth, email, password);
 
-        if (rememberMe) {
-
-        }
-
     } catch (e) {
         error = e;
     }

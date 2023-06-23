@@ -5,8 +5,12 @@ import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "@/config/firebase";
 import { getDownloadURL, ref, uploadBytesResumable, uploadBytes } from "firebase/storage";
 
+import useAuth from "@/firebase/checkAuth";
+
 
 const NewPost = (props) => {
+
+    const auth = useAuth();
 
     useEffect(() => {
 
@@ -16,13 +20,6 @@ const NewPost = (props) => {
     const [file, setFile] = useState("");
     const [isHovered, setIsHovered] = useState(false);
     const [isHovered2, setIsHovered2] = useState(false);
-
-    const uuid = () => {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-    }
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -47,7 +44,6 @@ const NewPost = (props) => {
     };
 
     const handleUpload = async (e) => {
-        const uid = uuid();
         e.preventDefault();
         const title = e.target[0].value;
         const content = e.target[1].value;
@@ -56,19 +52,19 @@ const NewPost = (props) => {
 
         const collectionRef = collection(db, "posts");
         const docRef = await addDoc(collectionRef, {
-            AccountUUID: "87119fcc-7bb8-44fb-b82c-d2c0d8513d31",
+            AccountUUID: auth.user.displayName,
             Content: content,
             Date: timestamp,
             Downvotes: [],
             title: title,
             Upvotes: [],
-            mediaUUID: uid + fileName
+            mediaUUID: auth.user.displayName + fileName
         });
 
-        const storageRef = ref(storage, `postImages/${uid}${fileName}`);
-        uploadBytes(storageRef, file).then((snapshot) => {
-            console.log('Uploaded a blob or file!');
-        }
+        const storageRef = ref(storage, `postImages/${auth.user.displayName}${fileName}`);
+            uploadBytes(storageRef, file).then((snapshot) => {
+                console.log('Uploaded a blob or file!');
+            }
         );
 
     };
@@ -77,7 +73,7 @@ const NewPost = (props) => {
     const svgClassName = fileName ? "w-6 h-6 mr-1" : "w-6 h-6";
 
     return (
-        <main className="bg-gray-200 overflow-auto h-screen">
+        <main className="margin-newpost bg-gray-200 overflow-auto h-screen">
             <Header />
             <div className="container mx-auto flex items-center justify-center">
                 <form action="" className="w-full mx-40 mt-10 shadow-xl bg-gray-50 rounded-md grid grid-cols-1" onSubmit={handleUpload}>

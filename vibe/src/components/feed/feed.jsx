@@ -8,7 +8,6 @@ export const Feed = (props) => {
 
     const [posts, setPosts] = useState([]);
 
-
     const fetchPost = async () => {
 
         await getDocs(collection(db, "posts"))
@@ -29,6 +28,7 @@ export const Feed = (props) => {
             <NewPost />
             {
                 posts.map((post, index) => {
+                    console.log(post.Downvotes);
                     return (
                         <Post
                             key={index}
@@ -37,8 +37,8 @@ export const Feed = (props) => {
                             date={post.Date}
                             uuid={post.AccountUUID}
                             mediaUUID={post.mediaUUID}
-                            upvotes={post.upvotes}
-                            downvotes={post.downvotes}
+                            upvotes={post.Upvotes}
+                            downvotes={post.Downvotes}
                         />
                     )
                 })
