@@ -1,0 +1,30 @@
+.button {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  margin-top: 10px;
+  height: 45px;
+  transition: 0.2s;
+  min-width: 100px;
+  width: auto;
+  border-radius: 20px;
+
+  &:hover {
+    // background-color: #22a9f27e;
+    background-color: #22a9f27c;
+  }
+
+  .image {
+    margin: 15px;
+  }
+
+  .text {
+    font-family: "forma-djr-text", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    margin-right: 30px;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}

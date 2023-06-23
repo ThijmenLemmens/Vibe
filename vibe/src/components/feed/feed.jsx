@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {NewPost} from "@/components/feed/newPost";
 import {Post} from "@/components/feed/post";
 import { collection, getDocs } from "firebase/firestore";
-import {db, storage} from '../../config/firebase';
+import {db, storage} from '@/config/firebase';
 
 export const Feed = (props) => {
 

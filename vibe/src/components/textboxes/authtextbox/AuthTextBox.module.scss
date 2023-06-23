@@ -1,0 +1,22 @@
+.input {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  height: 40px;
+  width: 100%;
+  background-color: #22a9f24d;
+  padding: 5px;
+
+  .inputVeld {
+    all: unset;
+    color: #05547e;
+    background-color: transparent;
+    margin-left: 8px;
+    margin-right: 8px;
+    width: 275px;
+
+    &::placeholder {
+      color: #05547e5e;
+    }
+  }
+}

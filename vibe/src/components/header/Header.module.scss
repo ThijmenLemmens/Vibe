@@ -1,34 +1,32 @@
 .header {
     display: flex;
+    position: fixed;
     width: 100%;
-    height: 75px;
-    // background-color: aquamarine;
+    height: 80px;
+    background-color: white;
+    border-bottom: 1px solid rgb(209, 209, 209);
+    z-index: 1000;
+    top: 0;
 }
 
-.logo {
+.sides {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 20%;
-}
-
-.nav {
-    display: flex;
-    height: 100%;
-    width: 80%;
-}
-
-.searchbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 75%;
-}
-
-.account {
-    height: 100%;
     width: 25%;
-    background-color: blue;
+    height: 100%;
+}
+
+.middle {
+    width: 50%;
+    height: 100%;
+    background-color: red;
+}
+
+.text {
+    font-family: "brevia", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    color: #22A8F2;
+    font-size: 30px;
 }
